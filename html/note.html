@@ -1,0 +1,1704 @@
+<!-- © -->
+
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="css_body">
+
+<div class="css_div_form_title_large">速查表</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  <table class="css_table_solid">
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_signal_01">signal</a></td>
+      <td class="css_td_solid_normal">
+        安裝信號處理函式.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigaction_01">sigaction</a></td>
+      <td class="css_td_solid_normal">
+        安裝信號處理函式.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigemptyset_01">sigemptyset</a></td>
+      <td class="css_td_solid_normal">
+        信號集操作, 清空信號集合內的所有信號.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigfillset_01">sigfillset</a></td>
+      <td class="css_td_solid_normal">
+        信號集操作, 把所有的信號加入到信號集合內.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigaddset_01">sigaddset</a></td>
+      <td class="css_td_solid_normal">
+        信號集操作, 把指定的信號加入到信號集合內.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigdelset_01">sigdelset</a></td>
+      <td class="css_td_solid_normal">
+        信號集操作, 把指定的信號從信號集合內移除.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigismember_01">sigismember</a></td>
+      <td class="css_td_solid_normal">
+        信號集操作, 檢查指定的信號是否在信號集合內.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_sigwait_01">sigwait</a></td>
+      <td class="css_td_solid_normal">
+        等待指定的信號到來.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_pthread_sigmask_01">pthread_sigmask</a></td>
+      <td class="css_td_solid_normal">
+        屏蔽指定的信號集合.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_kill_01">kill</a></td>
+      <td class="css_td_solid_normal">
+        傳遞信號給其他程序.<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="css_td_solid_nowrap"><a href="#hook_pthread_kill_01">pthread_kill</a></td>
+      <td class="css_td_solid_normal">
+        傳遞信號給同個程序內的其他執行緒.<br>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+</div>
+<br>
+
+<div class="css_div_form_title_large">signal</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  <div class="css_div_hook" id="hook_signal_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">void *</font><br>
+    <font class="css_font_b2">signal</font><br>
+    安裝信號處理函式.
+    <a href="https://linux.die.net/man/2/signal">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">signal</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要處理的信號.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sighandler_t</font><br>
+          <font class="css_font_g1">handler</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          自訂的信號處理函式.<br>
+          函式原型 <font class="css_font_b1">void function(int signum)</font><br>
+          使用 <font class="css_font_b1">SIG_IGN</font> 表示屏蔽此信號.<br>
+          使用 <font class="css_font_b1">SIG_DFL</font> 表示使用系統的預設處理方式 (強制結束程式).<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">!= SIG_ERR</font></td>
+        <td class="css_td_solid_normal">成功.</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">== SIG_ERR</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    注意事項 :<br>
+    <table class="css_table_none">
+      <tr>
+        <td class="css_td_none_nowrap">01.&nbsp;</td>
+        <td class="css_td_none_normal">
+          <font class="css_font_b1">SIGKILL, SIGSTOP</font> 是系統保留, 無法使用 signal() 指定行為.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_none_nowrap">02.&nbsp;</td>
+        <td class="css_td_none_normal">
+          收到信號進入信號處理函式後, 如果在信號處理函式期間又收到信號的處理行為 :<br>
+          <table class="css_table_solid">
+            <tr>
+              <td class="css_td_solid_center">狀況</td>
+              <td class="css_td_solid_center">行為</td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap">
+                收到相同的信號.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                後來信號會等到原來的信號處理完後 (離開信號處理函式) 才處理,
+                如果期間收到多次信號, 後續只會處理一次.
+                <a href="#hook_signal_example_02">[範例-02.情況-01]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap" width="200px">
+                不同的信號,<br>
+                此信號有指定處理函式.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                中斷目前的信號處理函式, 先處理後來的信號,
+                等到後來的信號處理完後才回到原來的信號處理函式繼續處理.
+                <a href="#hook_signal_example_02">[範例-02.情況-02]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap">
+                不同的信號,<br>
+                此信號使用 SIG_IGN 屏蔽.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                不處理新來的信號. <a href="#hook_signal_example_02">[範例-02.情況-03]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap">
+                不同的信號,<br>
+                此信號使用 SIG_DFL,<br>
+                或沒用 signal()/sigaction() 處理.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                程式被強制結束. <a href="#hook_signal_example_02">[範例-02.情況-04/情況-05]</a><br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("signal [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    // 註冊 SIGINT 的處理函式為 signal_handle.
+    if(signal(SIGINT, signal_handle) == SIG_ERR)
+    {
+        DMSG("call signal(SIGINT) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 不處理 SIGQUIT 信號.
+    if(signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+    {
+        DMSG("call signal(SIGQUIT) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 設定 SIGALRM 使用系統的預設處理.
+    if(signal(SIGALRM, SIG_DFL) == SIG_ERR)
+    {
+        DMSG("call signal(SIGALRM) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      情況-01 :<br>
+      執行程式, 使用 Ctrl + C 或使用 kill 傳送 INT 信號給程式.<br>
+      kill -INT ${pid}<br>
+      會顯示 "signal [2]", 表示 INT 信號.<br>
+      <br>
+      情況-02 :<br>
+      執行程式, 使用 kill 傳送 QUIT 信號給程式.<br>
+      kill -QUIT ${pid}<br>
+      因為對 QUIT 信號做屏蔽的動作 (SIG_IGN), 所以不會有任何反應.<br>
+      <br>
+      情況-03 :<br>
+      執行程式, 使用 kill 傳送 SIGALRM 信號給程式.<br>
+      kill -SIGALRM ${pid}<br>
+      因為對 ALRM 信號使用系統的預設處理方 (SIG_DFL), 所以程式會被關閉.<br>
+      <br>
+      情況-04 :<br>
+      執行程式, 使用 kill 傳送 USR1 信號給程式.<br>
+      kill -USR1 ${pid}<br>
+      對於沒有被設定處理方式的信號, 系統的預設處理方式是強制結束程式, 所以程式會被關閉.<br>
+    </div>
+    <br><br>
+    <div class="css_div_hook" id="hook_signal_example_02"></div>
+    範例-02 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("check1 [%d]", sig_num);
+    sleep(8);
+    DMSG("check2 [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    // 註冊 SIGINT 的處理函式為 signal_handle.
+    if(signal(SIGINT, signal_handle) == SIG_ERR)
+    {
+        DMSG("call signal(SIGINT) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 註冊 SIGQUIT 的處理函式為 signal_handle.
+    if(signal(SIGQUIT, signal_handle) == SIG_ERR)
+    {
+        DMSG("call signal(SIGQUIT) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 不處理 SIGTERM 信號.
+    if(signal(SIGTERM, SIG_IGN) == SIG_ERR)
+    {
+        DMSG("call signal(SIGTERM) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 設定 SIGALRM 使用系統的預設處理.
+    if(signal(SIGALRM, SIG_DFL) == SIG_ERR)
+    {
+        DMSG("call signal(SIGALRM) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      情況-01 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著再次使用 kill 傳送 INT 信號給程式.<br>
+      結果 :<br>
+      新的相同的信號會等到原來的信號處理完後才處理, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <font class="css_font_r1">check1 [2]</font><br>
+      <font class="css_font_r1">check2 [2]</font><br>
+      <br>
+      情況-02 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著使用 kill 傳送 QUIT 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (有註冊處理函式) 會中斷目前的信號處理函式, 先處理後來的信號, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_r1">check1 [3]</font><br>
+      <font class="css_font_r1">check2 [3]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <br>
+      情況-03 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著使用 kill 傳送 TERM 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (使用 SIG_IGN 處理) 會被忽略, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <br>
+      情況-04 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著使用 kill 傳送 ALRM 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (使用 SIG_DFL 處理) 會被系統強制結束, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <br>
+      情況-05 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著使用 kill 傳送 USR1 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (沒用 signal() 處理) 會被系統強制結束, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+    </div>
+  </div>
+  <br><br>
+
+</div>
+<br>
+
+<div class="css_div_form_title_large">sigaction</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  <div class="css_div_hook" id="hook_sigaction_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigaction</font><br>
+    安裝信號處理函式.
+    <a href="https://linux.die.net/man/2/sigaction">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">signum</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要處理的信號.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">const struct sigaction *</font><br>
+          <font class="css_font_g1">act</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要處理的動作.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">const struct sigaction *</font><br>
+          <font class="css_font_g1">oldact</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          回傳原本的處理動作.<br>
+          <font class="css_font_p1">可為 NULL, 表示不記錄.</font><br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    結構 <font class="css_font_b1">sigaction</font> 的成員 (只列出常用的, 詳細的參考 man-page) :<br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">void</font><br>
+          <font class="css_font_g1">(*sa_handler)(int)</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          自訂的信號處理函式.<br>
+          函式原型 <font class="css_font_b1">void function(int signum)</font><br>
+          使用 <font class="css_font_b1">SIG_IGN</font> 表示屏蔽此信號.<br>
+          使用 <font class="css_font_b1">SIG_DFL</font> 表示使用系統的預設處理方式 (強制結束程式).<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t</font><br>
+          <font class="css_font_g1">sa_mask</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          在信號處理函式期間, 要屏蔽哪些信號, 值的設定參考
+          <a href="#hook_signal_mask_01">[信號集操作函式]</a>.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">sa_flags</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          設定信號處理的其他操作.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          ...<br>
+        </td>
+        <td class="css_td_solid_normal">
+          ...<br>
+        </td>
+      </tr>
+    </table>
+    <br>
+    注意事項 :<br>
+    <table class="css_table_none">
+      <tr>
+        <td class="css_td_none_nowrap">01.&nbsp;</td>
+        <td class="css_td_none_normal">
+          <font class="css_font_b1">SIGKILL, SIGSTOP</font> 是系統保留, 無法使用 sigaction() 指定行為.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_none_nowrap">02.&nbsp;</td>
+        <td class="css_td_none_normal">
+          在信號處理函式期間又收到信號的處理行為會根據 <font class="css_font_g1">sa_mask</font>
+          或 <font class="css_font_g1">sa_flags</font> 的值決定 :<br>
+          <table class="css_table_solid">
+            <tr>
+              <td class="css_td_solid_center">狀況</td>
+              <td class="css_td_solid_center">行為</td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap" rowspan="2">
+                收到相同的信號.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                如果 <font class="css_font_g1">sa_flags</font> 沒有
+                <font class="css_font_b1">SA_NODEFER</font> 此旗標 :<br>
+                後來信號會等到原來的信號處理完後 (離開信號處理函式) 才處理,
+                如果期間收到多次信號, 後續只會處理一次.
+                <a href="#hook_sigaction_example_02">[範例-02.情況-01]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_normal">
+                如果 <font class="css_font_g1">sa_flags</font> 含有
+                <font class="css_font_b1">SA_NODEFER</font> 此旗標 :<br>
+                中斷目前的信號處理函式, 先處理後來的信號, 等到後來的信號處理完後才回到原來的信號處理函式繼續處理.
+                <a href="#hook_sigaction_example_02">[範例-02.情況-02]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap" rowspan="2">
+                收到不同的信號,<br>
+                此信號有指定處理函式.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                如果沒把此信號加入到 <font class="css_font_g1">sa_mask</font> :<br>
+                中斷目前的信號處理函式, 先處理後來的信號, 等到後來的信號處理完後才回到原來的信號處理函式繼續處理.
+                <a href="#hook_sigaction_example_03">[範例-03.情況-01]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_normal">
+                如果有把此信號加入到 <font class="css_font_g1">sa_mask</font> :<br>
+                後來信號會等到原來的信號處理完後 (離開信號處理函式) 才處理, 如果期間收到多次信號, 後續只會處理一次.
+                <a href="#hook_sigaction_example_03">[範例-03.情況-02]</a><br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap">
+                不同的信號,<br>
+                此信號使用 SIG_IGN 屏蔽.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                不處理新來的信號.<br>
+              </td>
+            </tr>
+            <tr>
+              <td class="css_td_solid_nowrap">
+                不同的信號,<br>
+                此信號使用 SIG_DFL<br>
+                或沒用 signal()/sigaction() 處理.<br>
+              </td>
+              <td class="css_td_solid_normal">
+                程式被強制結束.<br>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("signal [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    struct sigaction sig_action;
+
+    // 註冊 SIGINT 的處理函式為 signal_handle.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+    if(sigaction(SIGINT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 不處理 SIGQUIT 信號.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = SIG_IGN;
+    if(sigaction(SIGQUIT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 設定 SIGALRM 使用系統的預設處理.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = SIG_DFL;
+    if(sigaction(SIGALRM, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      情況-01 :<br>
+      執行程式, 使用 Ctrl + C 或使用 kill 傳送 INT 信號給程式.<br>
+      kill -INT ${pid}<br>
+      會顯示 "signal [2]", 表示 INT 信號.<br>
+      <br>
+      情況-02 :<br>
+      執行程式, 使用 kill 傳送 QUIT 信號給程式.<br>
+      kill -QUIT ${pid}<br>
+      因為對 QUIT 信號做屏蔽的動作 (SIG_IGN), 所以不會有任何反應.<br>
+      <br>
+      情況-03 :<br>
+      執行程式, 使用 kill 傳送 SIGALRM 信號給程式.<br>
+      kill -SIGALRM ${pid}<br>
+      因為對 ALRM 信號使用系統的預設處理方 (SIG_DFL), 所以程式會被關閉.<Br>
+      <br>
+      情況-04 :<br>
+      執行程式, 使用 kill 傳送 USR1 信號給程式.<br>
+      kill -USR1 ${pid}<br>
+      對於沒有被設定處理方式的信號, 系統的預設處理方式是強制結束程式, 所以程式會被關閉.<br>
+    </div>
+    <br><br>
+    <div class="css_div_hook" id="hook_sigaction_example_02"></div>
+    範例-02 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("check1 [%d]", sig_num);
+    sleep(8);
+    DMSG("check2 [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    struct sigaction sig_action;
+
+    // 註冊 SIGINT 的處理函式為 signal_handle.
+    // 設定進入信號處理函式時, 允許相同的信號.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+    if(sigaction(SIGINT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 註冊 SIGQUIT 的處理函式為 signal_handle.
+    // 設定進入信號處理函式時, 阻塞相同的信號.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+    sig_action.sa_flags |= SA_NODEFER;
+    if(sigaction(SIGQUIT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      情況-01 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著再次使用 kill 傳送 INT 信號給程式.<br>
+      結果 :<br>
+      新的相同同的信號會中斷目前的信號處理函式, 先處理後來的信號, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_r1">check1 [2]</font><br>
+      <font class="css_font_r1">check2 [2]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <br>
+      情況-02 :<br>
+      執行程式,<br>
+      使用 kill 傳送 QUIT 信號給程式,<br>
+      接著再次使用 kill 傳送 QUIT 信號給程式.<br>
+      結果 :<br>
+      新的相同的信號會等到原來的信號處理完後才處理, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [3]</font><br>
+      <font class="css_font_g1">check2 [3]</font><br>
+      <font class="css_font_r1">check1 [3]</font><br>
+      <font class="css_font_r1">check2 [3]</font><br>
+    </div>
+    <br><br>
+    <div class="css_div_hook" id="hook_sigaction_example_03"></div>
+    範例-03 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("check1 [%d]", sig_num);
+    sleep(8);
+    DMSG("check2 [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    struct sigaction sig_action;
+
+
+    // 註冊 SIGINT 的處理函式為 signal_handle.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+
+    // 把 SIGTERM 加入到屏蔽的信號集合內.
+    if(sigemptyset(&sig_action.sa_mask) == -1)
+    {
+        DMSG("call sigemptyset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    if(sigaddset(&sig_action.sa_mask, SIGTERM) == -1)
+    {
+        DMSG("call sigaddset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    if(sigaction(SIGINT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+
+    // 註冊 SIGQUIT 的處理函式為 signal_handle.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+    if(sigaction(SIGQUIT, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+
+    // 註冊 SIGTERM 的處理函式為 signal_handle.
+    memset(&sig_action, 0, sizeof(struct sigaction));
+    sig_action.sa_handler = signal_handle;
+    if(sigaction(SIGTERM, &sig_action, NULL) == -1)
+    {
+        DMSG("call sigaction() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      情況-01 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著再次使用 kill 傳送 QUIT 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (有註冊處理函式) 並且沒加入到屏蔽信號集合內,<br>
+      所以會中斷目前的信號處理函式, 先處理後來的信號, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_r1">check1 [3]</font><br>
+      <font class="css_font_r1">check2 [3]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <br>
+      情況-02 :<br>
+      執行程式,<br>
+      使用 kill 傳送 INT 信號給程式,<br>
+      接著再次使用 kill 傳送 TERM 信號給程式.<br>
+      結果 :<br>
+      新的不同的信號 (有註冊處理函式) 並且有加入到屏蔽信號集合內,<br>
+      所以會等到原來的信號處理完後才處理, 所以會顯示 :<br>
+      <font class="css_font_g1">check1 [2]</font><br>
+      <font class="css_font_g1">check2 [2]</font><br>
+      <font class="css_font_r1">check1 [15]</font><br>
+      <font class="css_font_r1">check2 [15]</font><br>
+    </div>
+  </div>
+  <br><br>
+
+</div>
+<br>
+
+<div class="css_div_hook" id="hook_signal_mask_01"></div>
+<div class="css_div_form_title_large">信號集操作函式</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  信號集用來表示信號的集合, Linux 所有支援的信號都可以加入到集合中.<br>
+  <br>
+
+  <div class="css_div_hook" id="hook_sigemptyset_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigemptyset</font><br>
+    清空信號集合內的所有信號.
+    <a href="https://linux.die.net/man/3/sigemptyset">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    sigset_t sig_set;
+
+    // 清空信號集合.
+    if(sigemptyset(&sig_set) == -1)
+    {
+        DMSG("call sigemptyset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+FREE_01:
+    return 0;
+}
+</pre>
+  </div>
+  <br><br>
+
+  <div class="css_div_hook" id="hook_sigfillset_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigfillset</font><br>
+     把所有的信號加入到信號集合內.
+    <a href="https://linux.die.net/man/3/sigfillset">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    sigset_t sig_set;
+
+    // 把所有的信號加入到信號集合內.
+    if(sigfillset(&sig_set) == -1)
+    {
+        DMSG("call sigfillset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+FREE_01:
+    return 0;
+}
+</pre>
+  </div>
+  <br><br>
+
+  <div class="css_div_hook" id="hook_sigaddset_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigaddset</font><br>
+    把指定的信號加入到信號集合內.
+    <a href="https://linux.die.net/man/3/sigaddset">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">signum</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要加入的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+        <br>
+        範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    sigset_t sig_set;
+
+    // 清空信號集合.
+    if(sigemptyset(&sig_set) == -1)
+    {
+        DMSG("call sigemptyset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 把 SIGINT 加入到信號集合內.
+    if(sigaddset(&sig_set, SIGINT) == -1)
+    {
+        DMSG("call sigaddset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+FREE_01:
+    return 0;
+}
+</pre>
+  </div>
+  <br><br>
+
+  <div class="css_div_hook" id="hook_sigdelset_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigdelset</font><br>
+     把指定的信號從信號集合內移除.
+    <a href="https://linux.die.net/man/3/sigdelset">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">signum</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要移除的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    sigset_t sig_set;
+
+    // 把所有的信號加入到信號集合內.
+    if(sigfillset(&sig_set) == -1)
+    {
+        DMSG("call sigfillset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 從信號集合內移除 SIGINT.
+    if(sigdelset(&sig_set, SIGINT) == -1)
+    {
+        DMSG("call sigdelset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+FREE_01:
+    return 0;
+}
+</pre>
+  </div>
+  <br><br>
+
+  <div class="css_div_hook" id="hook_sigismember_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigismember</font><br>
+    檢查指定的信號是否在信號集合內.
+    <a href="https://linux.die.net/man/3/sigismember">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">const sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">signum</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要檢查的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">1</font></td>
+        <td class="css_td_solid_normal">成功, 指定的信號存在信號集合內.</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功, 指定的信號不在信號集合內.</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    int cert;
+    sigset_t sig_set;
+
+    // 把所有的信號加入到信號集合內.
+    if(sigfillset(&sig_set) == -1)
+    {
+        DMSG("call sigfillset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 檢查 SIGINT 是否在信號集合內.
+    cert = sigismember(&sig_set, SIGINT);
+    if(cert == -1)
+    {
+        DMSG("call sigismember() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    DMSG("SIGINT %s exist", cert == 1 ? "is" : "not");
+
+    // 從信號集合內移除 SIGINT.
+    if(sigdelset(&sig_set, SIGINT) == -1)
+    {
+        DMSG("call sigdelset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 再次檢查 SIGINT 是否在信號集合內.
+    cert = sigismember(&sig_set, SIGINT);
+    if(cert == -1)
+    {
+        DMSG("call sigismember() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    DMSG("SIGINT %s exist", cert == 1 ? "is" : "not");
+
+FREE_01:
+    return 0;
+}
+</pre>
+  </div>
+  <br><br>
+
+</div>
+<br>
+
+<div class="css_div_form_title_large">sigwait</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  在多執行緒的情況下, 如果多個執行緒都使用 signal()/sigaction() 註冊相同的信號, 當程式收到來自外部的信號時,
+  在 Linux 的環境下系統會將信號丟給主執行緒, 在 BSD 的環境下系統會將信號丟給 PID 最大的執行緒,
+  這在撰寫可移植的程式時, 對信號的處理造成不便.<br>
+  <br>
+
+  sigwait() 可將信號的處理方式由異步轉為同步, 呼叫 sigwait() 後程式會進入阻塞狀態, 並等待指定的信號集合到來,
+  接收到指定的信號集合後程式便會從阻塞狀態返回.<br>
+  <br>
+
+  在多執行緒的情況下, 一般會由主執行緒使用 sigwait() 負責處理來自外部的信號.<br>
+  <br>
+
+  <div class="css_div_hook" id="hook_sigwait_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">sigwait</font><br>
+    等待指定的信號到來.
+    <a href="https://linux.die.net/man/3/sigwait">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">const sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合, 紀錄要等待哪些信號, 值的設定參考
+          <a href="#hook_signal_mask_01">[信號集操作函式]</a>.<br>
+          <font class="css_font_p1">必須先使用 <a href="#hook_pthread_sigmask_01">pthread_sigmask()</a> 將要等待的信號屏蔽.</font><br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int *</font><br>
+          <font class="css_font_g1">sig</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存收到的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">== 0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">&nbsp;&lt; 0</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考返回值.</td>
+      </tr>
+    </table>
+    <br>
+    注意事項 :<br>
+    <table class="css_table_none">
+      <tr>
+        <td class="css_td_none_nowrap">01.&nbsp;</td>
+        <td class="css_td_none_normal">
+          <font class="css_font_b1">SIGKILL, SIGSTOP</font> 是系統保留, 無法等待到來.
+        </td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+int main(
+    int argc,
+    char **argv)
+{
+    int cret, target_sig, is_exit = 0;
+    sigset_t sig_block_set;
+
+    // 等待 SIGINT, SIGQUIT.
+
+    // 先屏蔽 SIGINT, SIGQUIT.
+    if(sigemptyset(&sig_block_set) == -1)
+    {
+        DMSG("call sigemptyset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    if(sigaddset(&sig_block_set, SIGINT) == -1)
+    {
+        DMSG("call sigaddset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    if(sigaddset(&sig_block_set, SIGQUIT) == -1)
+    {
+        DMSG("call sigaddset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    cret = pthread_sigmask(SIG_SETMASK, &sig_block_set, NULL);
+    if(cret < 0)
+    {
+        DMSG("call pthread_sigmask() fail [%s]", strerror(cret));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+
+    while(is_exit == 0)
+    {
+        // 等待指定的信號.
+        cret = sigwait(&sig_block_set, &target_sig);
+        if(cret < 0)
+        {
+            DMSG("call sigwait() fail [%s]", strerror(cret));
+            goto FREE_01;
+        }
+
+        // 處理收到的信號.
+        switch(target_sig)
+        {
+            case SIGINT:
+                DMSG("SIGINT, continue");
+                break;
+            case SIGQUIT:
+                DMSG("SIGQUIT, quit");
+                is_exit = 1;
+                break;
+        }
+    }
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      執行程式.<br>
+      使用 kill 傳送 INT 信號給程式.<br>
+      因為 INT 已經被屏蔽, 會被 sigwait() 收到, 會顯示 :<br>
+      <font class="css_font_g1">SIGINT, continue</font><br>
+      使用 kill 傳送 QUIT 信號給程式.<br>
+      因為 QUIT 已經被屏蔽, 會被 sigwait() 收到, 會顯示 :<br>
+      <font class="css_font_g1">SIGQUIT, quit</font><br>
+    </div>
+  </div>
+  <br><br>
+
+</div>
+<br>
+
+<div class="css_div_form_title_large">pthread_sigmask</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  如果程式不希望收到某個信號而中斷執行, 可以使用此函式將指定的信號屏蔽.<br>
+  <br>
+
+  <div class="css_div_hook" id="hook_pthread_sigmask_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">pthread_sigmask</font><br>
+    屏蔽指定的信號集合.
+    <a href="https://linux.die.net/man/3/pthread_sigmask">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    需要的函式庫 :<br>
+    <font class="css_font_b1">-lpthread</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap" rowspan="4">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">how</font>
+        </td>
+        <td class="css_td_solid_normal">
+          如何設定信號集合.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_normal">
+          <font class="css_font_b1">SIG_BLOCK</font><br>
+          把 <font class="css_font_g1">set</font> 的信號集合加入到屏蔽的信號列表.<br>
+          相當於 <font class="css_font_p1">block_list = block_list | set</font><br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_normal">
+          <font class="css_font_b1">SIG_UNBLOCK</font><br>
+          把 <font class="css_font_g1">set</font> 的信號集合從屏蔽的信號列表移除.<br>
+          相當於 <font class="css_font_p1">block_list = block_list & (~set)</font><br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_normal">
+          <font class="css_font_b1">SIG_SETMASK</font><br>
+          把 <font class="css_font_g1">set</font> 的信號集合設為屏蔽的信號列表.<br>
+          相當於 <font class="css_font_p1">block_list = set</font><br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">const sigset_t *</font><br>
+          <font class="css_font_g1">set</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          儲存信號集合, 紀錄要處理的信號, 值的設定參考
+          <a href="#hook_signal_mask_01">[信號集操作函式]</a>.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">sigset_t *</font><br>
+          <font class="css_font_g1">oldset</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          回傳原本的屏蔽信號列表.<br>
+          <font class="css_font_p1">可為 NULL 表示不記錄.</font><br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">== 0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">&nbsp;&lt; 0</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考返回值.</td>
+      </tr>
+    </table>
+    <br>
+    注意事項 :<br>
+    <table class="css_table_none">
+      <tr>
+        <td class="css_td_none_nowrap">01.&nbsp;</td>
+        <td class="css_td_none_normal">
+          <font class="css_font_b1">SIGKILL, SIGSTOP</font> 是系統保留, 可以設定屏蔽但是實際上無作用.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_none_nowrap">02.&nbsp;</td>
+        <td class="css_td_none_normal">
+          使用 fork() 建立的子程序會繼承父程序的信號屏蔽列表.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_none_nowrap">03.&nbsp;</td>
+        <td class="css_td_none_normal">
+          使用 pthread_create() 建立的子執行緒會繼承父執行緒的信號屏蔽列表.<br>
+        </td>
+      </tr>
+    </table>
+    <br>
+    範例-01 :<br>
+<pre class="css_pre_code">
+#include &lt;errno.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;signal.h&gt;
+#include &lt;unistd.h&gt;
+
+#define DMSG(msg_fmt, msgs...) printf("%s(%04u): " msg_fmt "\n", __FILE__, __LINE__, ##msgs)
+
+void signal_handle(
+    int sig_num)
+{
+    DMSG("signal [%d]", sig_num);
+}
+
+int main(
+    int argc,
+    char **argv)
+{
+    int cret;
+    sigset_t sig_block_set;
+
+    // 註冊 SIGQUIT 的處理函式為 signal_handle.
+    if(signal(SIGQUIT, signal_handle) == SIG_ERR)
+    {
+        DMSG("call signal(SIGQUIT) fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+
+    // 屏蔽 SIGQUIT.
+    if(sigemptyset(&sig_block_set) == -1)
+    {
+        DMSG("call sigemptyset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    if(sigaddset(&sig_block_set, SIGQUIT) == -1)
+    {
+        DMSG("call sigaddset() fail [%s]", strerror(errno));
+        goto FREE_01;
+    }
+    cret = pthread_sigmask(SIG_SETMASK, &sig_block_set, NULL);
+    if(cret < 0)
+    {
+        DMSG("call pthread_sigmask() fail [%s]", strerror(cret));
+        goto FREE_01;
+    }
+
+    DMSG("ready");
+    pause();
+
+FREE_01:
+    return 0;
+}
+</pre>
+    <br>
+    <div class="css_div_attent">
+      執行程式, 使用 kill 傳送 QUIT 信號給程式.<br>
+      結果 :<br>
+      因為 QUIT 已經被屏蔽, 所以不會收到信號.<br>
+    </div>
+  </div>
+  <br><br>
+
+</div>
+<br>
+
+<div class="css_div_form_title_large">傳遞信號</div>
+<div class="css_div_form_body_large">
+  <br>
+
+  <div class="css_div_hook" id="hook_kill_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">kill</font><br>
+    傳遞信號給其他程序.
+    <a href="https://linux.die.net/man/3/kill">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">pid_t</font><br>
+          <font class="css_font_g1">pid</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          目標程序的 PID.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">sig</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要傳遞的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+  </div>
+  <br><br>
+
+  <div class="css_div_hook" id="hook_pthread_kill_01"></div>
+  <div class="css_div_group">
+    <font class="css_font_r2">int</font><br>
+    <font class="css_font_b2">pthread_kill</font><br>
+    傳遞信號給同個程序內的其他執行緒.
+    <a href="https://linux.die.net/man/3/pthread_kill">[man-page]</a><br>
+    <br>
+    需要的標頭檔 :<br>
+    <font class="css_font_b1">#include &lt;signal.h&gt;</font><br>
+    <br>
+    需要的函式庫 :<br>
+    <font class="css_font_b1">-lpthread</font><br>
+    <br>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">參數</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">pthread_t</font><br>
+          <font class="css_font_g1">thread</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          目標執行緒的 ID.<br>
+        </td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap">
+          <font class="css_font_r1">int</font><br>
+          <font class="css_font_g1">sig</font><br>
+        </td>
+        <td class="css_td_solid_normal">
+          要傳遞的信號.<br>
+        </td>
+      </tr>
+    </table>
+    <table class="css_table_solid">
+      <tr>
+        <td class="css_td_solid_center" colspan="2">回傳</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">0</font></td>
+        <td class="css_td_solid_normal">成功</td>
+      </tr>
+      <tr>
+        <td class="css_td_solid_nowrap"><font class="css_font_g1">-1</font></td>
+        <td class="css_td_solid_normal">錯誤, 原因參考 errno.</td>
+      </tr>
+    </table>
+  </div>
+  <br><br>
+
+</div>
+
+</body>
+
+</html>
